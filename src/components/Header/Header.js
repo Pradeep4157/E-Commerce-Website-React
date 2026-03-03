@@ -1,7 +1,18 @@
+import { useState } from "react";
 import "./Header.css";
+import "../../UI/Modal.css";
+
 function onAddProductClick() {}
-function onCartClick() {}
-function header() {
+
+function Header() {
+  const [showCart, setShowCart] = useState(false);
+  function openCart() {
+    setShowCart(true);
+  }
+  function closeCart() {
+    setShowCart(false);
+  }
+
   return (
     <header className="header">
       <h1>My React Store</h1>
@@ -13,11 +24,18 @@ function header() {
         >
           Add Product
         </button>
-        <button className="yellow-button" onClick={onCartClick}>
+        <button className="yellow-button" onClick={openCart}>
           Cart
         </button>
+      </div>
+      <div>
+        {showCart && (
+          <div className="backdrop" onClick={closeCart}>
+            <div className="modal">LUND LELE !!</div>
+          </div>
+        )}
       </div>
     </header>
   );
 }
-export default header;
+export default Header;
