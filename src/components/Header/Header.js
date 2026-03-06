@@ -28,48 +28,30 @@
 
 
 */
-
-import { useState } from "react";
 import "./Header.css";
-import "../UI/Modal.css";
-import Modal from "../UI/Modal";
-
-function Header() {
-  const [showCart, setShowCart] = useState(false);
-  const [freqProduct, setAddProduct] = useState(false);
-  function openCart() {
-    setShowCart(true);
-  }
-  function closeCart() {
-    setShowCart(false);
-  }
-  function openAddProduct() {
-    setAddProduct(true);
-  }
-  function closeAddProduct() {
-    setAddProduct(false);
-  }
-
+function Header({ openCart, openProduct }) {
   return (
     <header className="header">
       <h1>My React Store</h1>
       <div>
         <button
           className="yellow-button"
-          onClick={openAddProduct}
           style={{ marginRight: "20px" }}
+          onClick={openProduct}
         >
+          {console.log("header just called product..")}
           Add Product
         </button>
         <button className="yellow-button" onClick={openCart}>
           Cart
+          {console.log("header just called cart..")}
         </button>
       </div>
-      <Modal
+      {/* <Modal
         show={showCart}
         onClose={closeCart}
-        children={<div>LUND LELE !! </div>}
-      />
+        children={<div>LUND LELE !!</div>}
+      /> */}
     </header>
   );
 }
