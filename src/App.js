@@ -11,6 +11,7 @@ function App() {
   const [showProduct, setShowProduct] = useState(false);
   const openProduct = () => setShowProduct(true);
   const closeProduct = () => setShowProduct(false);
+  const [cartItems, setCartItems] = useState([]);
   return (
     <div>
       <Header openCart={openCart} openProduct={openProduct}></Header>
@@ -18,11 +19,6 @@ function App() {
         {console.log("App just called products..")}
       </Products>
       <Cart showCart={showCart} closeCart={closeCart}></Cart>
-      {/* <Modal
-        show={showCart}
-        onClose={closeCart}
-        children={<div>LUND LELE !!</div>}
-      /> */}
     </div>
   );
 }
