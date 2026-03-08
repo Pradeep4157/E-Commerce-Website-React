@@ -1,7 +1,7 @@
 import productsData from "../../data/products.json";
 import "../Products/Products.css";
 
-function Product({ product }) {
+function Product({ product, onAddToCart }) {
   return (
     <div key={product.id} className="product">
       {/* now i will have to go assets folder 
@@ -11,17 +11,17 @@ function Product({ product }) {
         alt={product.name}
       ></img>
       <div className="product-name">{product.name}</div>
-      <button>Add to Cart</button>
+      <button onClick={onAddToCart}>Add to Cart</button>
     </div>
   );
 }
-function Products() {
+function Products({ onAddToCart }) {
   return (
     <div className="products-container">
       {productsData.map((product) => (
         // this key is mostly going to get used to add this ele
         // to cart..
-        <Product key={product.id} product={product} />
+        <Product key={product.id} product={product} onAddToCart={onAddToCart} />
       ))}
     </div>
   );

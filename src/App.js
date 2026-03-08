@@ -11,11 +11,17 @@ function App() {
   const [showProduct, setShowProduct] = useState(false);
   const openProduct = () => setShowProduct(true);
   const closeProduct = () => setShowProduct(false);
-  const [cartItems, setCartItems] = useState([]);
+  const handleAddToCart = () => {
+    console.log("clicked on add to cart..");
+  };
   return (
     <div>
       <Header openCart={openCart} openProduct={openProduct}></Header>
-      <Products showProduct={showProduct} closeProduct={closeProduct}>
+      <Products
+        showProduct={showProduct}
+        closeProduct={closeProduct}
+        onAddToCart={handleAddToCart}
+      >
         {console.log("App just called products..")}
       </Products>
       <Cart showCart={showCart} closeCart={closeCart}></Cart>
