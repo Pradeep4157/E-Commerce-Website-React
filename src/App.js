@@ -1,3 +1,16 @@
+/*
+  we have productId, name and image.. 
+
+  now there are a few doubts : 
+
+  1) just doing some class.append shouldnt be enough ... at least store it 
+
+    in localStorage...
+
+  
+
+
+*/
 import "./App.css";
 import Header from "./components/Header/Header";
 import Products from "./components/Products/Products";
@@ -8,20 +21,21 @@ function App() {
   const [showCart, setShowCart] = useState(false);
   const openCart = () => setShowCart(true);
   const closeCart = () => setShowCart(false);
-  const [showProduct, setShowProduct] = useState(false);
-  const openProduct = () => setShowProduct(true);
-  const closeProduct = () => setShowProduct(false);
-  const handleAddToCart = () => {
-    console.log("clicked on add to cart..");
+  const [cartItems, setCartItems] = useState([]);
+  const handleAddToCart = (productId, productName, productImage) => {
+    let updatedCartItems = cartItems;
+    updatedCartItems = updatedCartItems.concat({
+      id: productId,
+      name: productName,
+      image: productImage,
+      quantity: 1,
+    });
+    setCartItems(updatedCartItems);
   };
   return (
     <div>
-      <Header openCart={openCart} openProduct={openProduct}></Header>
-      <Products
-        showProduct={showProduct}
-        closeProduct={closeProduct}
-        onAddToCart={handleAddToCart}
-      >
+      <Header openCart={openCart}></Header>
+      <Products onAddToCart={handleAddToCart}>
         {console.log("App just called products..")}
       </Products>
       <Cart showCart={showCart} closeCart={closeCart}></Cart>

@@ -34,14 +34,14 @@ function Header({ openCart, openProduct }) {
     <header className="header">
       <h1>My React Store</h1>
       <div>
-        <button
+        {/* <button
           className="yellow-button"
           style={{ marginRight: "20px" }}
           onClick={openProduct}
         >
           {console.log("header just called product..")}
           Add Product
-        </button>
+        </button> */}
         <button className="yellow-button" onClick={openCart}>
           Cart
           {console.log("header just called cart..")}
