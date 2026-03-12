@@ -23,22 +23,33 @@ function App() {
   const closeCart = () => setShowCart(false);
   const [cartItems, setCartItems] = useState([]);
   const handleAddToCart = (productId, productName, productImage) => {
-    let updatedCartItems = cartItems;
-    updatedCartItems = updatedCartItems.concat({
+    // let updatedCartItems = cartItems;
+    // updatedCartItems = updatedCartItems.concat({
+    //   id: productId,
+    //   name: productName,
+    //   image: productImage,
+    //   quantity: 1,
+    // });
+    // instead of all this we can use spread operator to spread
+    // the array and just append at the end of the array..
+    const cartItem = {
       id: productId,
       name: productName,
       image: productImage,
       quantity: 1,
-    });
-    setCartItems(updatedCartItems);
+    };
+    setCartItems((cartItems) => [...cartItems, cartItem]);
+    // setCartItems(updatedCartItems);
   };
   return (
     <div>
       <Header openCart={openCart}></Header>
-      <Products onAddToCart={handleAddToCart}>
-        {console.log("App just called products..")}
-      </Products>
-      <Cart showCart={showCart} closeCart={closeCart}></Cart>
+      <Products onAddToCart={handleAddToCart}></Products>
+      <Cart
+        showCart={showCart}
+        closeCart={closeCart}
+        cartItems={cartItems}
+      ></Cart>
     </div>
   );
 }
