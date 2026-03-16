@@ -20,7 +20,7 @@ function CartItem({
           <div>
             <button
               className="yellow-button qty-button qty-plus-button"
-              onClick={onIncreaseQuantity}
+              onClick={() => onIncreaseQuantity(id)}
             >
               +
             </button>
@@ -28,7 +28,7 @@ function CartItem({
           <div>
             <button
               className="yellow-button qty-button qty-minus-button"
-              onClick={onDecreaseQuantity}
+              onClick={() => onDecreaseQuantity(id)}
             >
               -
             </button>

@@ -7,6 +7,26 @@
 
     in localStorage...
 
+  now we need to add modal for Add Product button, 
+
+  on clicking that button showProduct should become true 
+
+  and when it becomes true then the modal shows up.. 
+
+  first we need to create component for this addProduct modal..
+
+  and then if showProduct is true then render it else remove it..
+
+  from app we will send this openCart and closeCart function..
+
+  when the user clicks on Add Product button then we will run this
+
+  openCart function..
+
+  and if clicks on close or somewhere else then we will close it.. 
+
+
+
   
 
 
@@ -16,17 +36,41 @@ import Header from "./components/Header/Header";
 import Products from "./components/Products/Products";
 import Cart from "../src/components/Cart/Cart";
 import { useState } from "react";
+import AddProduct from "./components/AddProduct/AddProduct";
 
 function App() {
   const [showCart, setShowCart] = useState(false);
+  const [showProduct, setShowProduct] = useState(false);
   const openCart = () => setShowCart(true);
   const closeCart = () => setShowCart(false);
+  const openProduct = () => setShowProduct(true);
+  const closeProduct = () => setShowProduct(false);
   const [cartItems, setCartItems] = useState([]);
-  const handleIncreaseQuantity = () => {
-    console.log("Quantity Increased..");
+  const handleIncreaseQuantity = (productId) => {
+    const productInCartIndex = cartItems.findIndex(
+      (item) => item.id === productId,
+    );
+    const updatedCartItems = [...cartItems];
+    updatedCartItems[productInCartIndex].quantity += 1;
+    setCartItems(updatedCartItems);
+    console.log(productId);
   };
-  const handleDecreaseQuantity = () => {
-    console.log("Quantity Decreased..");
+  const handleDecreaseQuantity = (productId) => {
+    const productInCartIndex = cartItems.findIndex(
+      (item) => item.id === productId,
+    );
+    let updatedCartItems = [...cartItems];
+    if (cartItems[productInCartIndex].quantity === 1) {
+      // it gets removed from the list..
+      updatedCartItems = updatedCartItems.filter(
+        (item) => item.id !== productId,
+      );
+      setCartItems(updatedCartItems);
+    } else {
+      // we dec the quantity of the product in cart..
+      updatedCartItems[productInCartIndex].quantity -= 1;
+      setCartItems(updatedCartItems);
+    }
   };
   const handleAddToCart = (productId, productName, productImage) => {
     // let updatedCartItems = cartItems;
@@ -59,7 +103,7 @@ function App() {
   };
   return (
     <div>
-      <Header openCart={openCart}></Header>
+      <Header openCart={openCart} openProduct={openProduct}></Header>
       <Products onAddToCart={handleAddToCart}></Products>
       <Cart
         showCart={showCart}
@@ -68,6 +112,11 @@ function App() {
         onIncreaseQuantity={handleIncreaseQuantity}
         onDecreaseQuantity={handleDecreaseQuantity}
       ></Cart>
+      <AddProduct
+        showProduct={showProduct}
+        closeProduct={closeProduct}
+        openProduct={openProduct}
+      ></AddProduct>
     </div>
   );
 }
