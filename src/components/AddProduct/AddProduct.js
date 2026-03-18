@@ -12,10 +12,20 @@
     give it to modal..
 */
 import Modal from "../UI/Modal";
+import "./AddProduct.css";
 function AddProduct({ showProduct, closeProduct }) {
   return (
     <Modal show={showProduct} onClose={closeProduct}>
-      <div>You can add products from here in website</div>
+      <div className="add-product-container">
+        <div className="add-product-heading">Add Product: </div>
+        <form className="add-product-form" onSubmit={() => {}}>
+          <div className="form-label">Enter Product Name</div>
+          <input className="form-input" />
+        </form>
+        <button type="submit" class="yellow-button submit-button">
+          Add Product
+        </button>
+      </div>
     </Modal>
   );
 }
