@@ -13,18 +13,30 @@
 */
 import Modal from "../UI/Modal";
 import "./AddProduct.css";
-function AddProduct({ showProduct, closeProduct }) {
+import { useRef } from "react";
+function AddProduct({ showProduct, closeProduct, addProducts }) {
+  const nameRef = useRef();
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log("WE HAVE REACHED HERE..");
+    addProducts(nameRef.current.value);
+    console.log(nameRef.current.value);
+  }
   return (
     <Modal show={showProduct} onClose={closeProduct}>
       <div className="add-product-container">
         <div className="add-product-heading">Add Product: </div>
-        <form className="add-product-form" onSubmit={() => {}}>
-          <div className="form-label">Enter Product Name</div>
-          <input className="form-input" />
+        <div className="form-label">Enter Product Name</div>
+        <form
+          className="add-product-form"
+          name="product name"
+          onSubmit={handleSubmit}
+        >
+          <input className="form-input" ref={nameRef} />
+          <button type="submit" className="yellow-button submit-button">
+            Add Product
+          </button>
         </form>
-        <button type="submit" class="yellow-button submit-button">
-          Add Product
-        </button>
       </div>
     </Modal>
   );

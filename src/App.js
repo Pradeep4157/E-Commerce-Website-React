@@ -37,7 +37,7 @@ import Products from "./components/Products/Products";
 import Cart from "../src/components/Cart/Cart";
 import { useState } from "react";
 import AddProduct from "./components/AddProduct/AddProduct";
-import initialProducts from "../src/data/products.json"
+import initialProducts from "../src/data/products.json";
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -48,6 +48,13 @@ function App() {
   const closeProduct = () => setShowProduct(false);
   const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState(initialProducts);
+  function handleAddProduct(productName) {
+    const product = {
+      id: products.length + 1,
+      name: productName,
+      image: "random_image.webp",
+    };
+  }
   const handleIncreaseQuantity = (productId) => {
     const productInCartIndex = cartItems.findIndex(
       (item) => item.id === productId,
@@ -106,7 +113,7 @@ function App() {
   return (
     <div>
       <Header openCart={openCart} openProduct={openProduct}></Header>
-      <Products products = {products} onAddToCart={handleAddToCart}></Products>
+      <Products products={products} onAddToCart={handleAddToCart}></Products>
       <Cart
         showCart={showCart}
         closeCart={closeCart}
@@ -118,6 +125,7 @@ function App() {
         showProduct={showProduct}
         closeProduct={closeProduct}
         openProduct={openProduct}
+        addProducts={handleAddProduct}
       ></AddProduct>
     </div>
   );

@@ -11,7 +11,7 @@ function Product({ id, name, image, key, onAddToCart }) {
     </div>
   );
 }
-function Products({ onAddToCart , products}) {
+function Products({ onAddToCart, products }) {
   return (
     <div className="products-container">
       {products.map((product) => (
