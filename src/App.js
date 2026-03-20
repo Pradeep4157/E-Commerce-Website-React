@@ -54,6 +54,9 @@ function App() {
       name: productName,
       image: "random_image.webp",
     };
+    const updatedProducts = [...products, product];
+    setProducts(updatedProducts);
+    setShowProduct(false);
   }
   const handleIncreaseQuantity = (productId) => {
     const productInCartIndex = cartItems.findIndex(

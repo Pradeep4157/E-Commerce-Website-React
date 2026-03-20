@@ -18,7 +18,6 @@ function AddProduct({ showProduct, closeProduct, addProducts }) {
   const nameRef = useRef();
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("WE HAVE REACHED HERE..");
     addProducts(nameRef.current.value);
     console.log(nameRef.current.value);
   }
