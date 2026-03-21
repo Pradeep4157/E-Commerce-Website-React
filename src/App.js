@@ -32,6 +32,7 @@
 
 */
 import "./App.css";
+import React from "react";
 import Header from "./components/Header/Header";
 import Products from "./components/Products/Products";
 import Cart from "../src/components/Cart/Cart";
@@ -114,7 +115,7 @@ function App() {
     // setCartItems(updatedCartItems);
   };
   return (
-    <div>
+    <React.Fragment>
       <Header openCart={openCart} openProduct={openProduct}></Header>
       <Products products={products} onAddToCart={handleAddToCart}></Products>
       <Cart
@@ -130,7 +131,7 @@ function App() {
         openProduct={openProduct}
         addProducts={handleAddProduct}
       ></AddProduct>
-    </div>
+    </React.Fragment>
   );
 }
 
