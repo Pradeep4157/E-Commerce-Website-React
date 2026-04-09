@@ -1,5 +1,7 @@
 import Modal from "../UI/Modal";
 import "./Cart.css";
+import { useContext } from "react";
+import AppContext from "../../store/app-context.js";
 function CartItem({
   id,
   name,
@@ -38,13 +40,14 @@ function CartItem({
     </div>
   );
 }
-function Cart({
-  showCart,
-  closeCart,
-  cartItems,
-  onIncreaseQuantity,
-  onDecreaseQuantity,
-}) {
+function Cart() {
+  const {
+    showCart,
+    closeCart,
+    cartItems,
+    handleIncreaseQuantity,
+    handleDecreaseQuantity,
+  } = useContext(AppContext);
   return (
     <Modal show={showCart} onClose={closeCart}>
       <div className="cart-container">
@@ -57,8 +60,8 @@ function Cart({
               name={item.name}
               image={item.image}
               quantity={item.quantity}
-              onIncreaseQuantity={onIncreaseQuantity}
-              onDecreaseQuantity={onDecreaseQuantity}
+              onIncreaseQuantity={handleIncreaseQuantity}
+              onDecreaseQuantity={handleDecreaseQuantity}
             ></CartItem>
           ))
         ) : (

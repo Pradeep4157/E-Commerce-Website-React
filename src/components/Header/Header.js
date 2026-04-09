@@ -29,7 +29,10 @@
 
 */
 import "./Header.css";
-function Header({ openCart, openProduct }) {
+import AppContext from "../../store/app-context.js";
+import { useContext } from "react";
+function Header() {
+  const { openCart, openProduct } = useContext(AppContext);
   return (
     <header className="header">
       <h1>My React Store</h1>
@@ -43,7 +46,6 @@ function Header({ openCart, openProduct }) {
         </button>
         <button className="yellow-button" onClick={openCart}>
           Cart
-          {console.log("header just called cart..")}
         </button>
       </div>
       {/* <Modal

@@ -1,35 +1,6 @@
 [
-    {
-        "id" : 1,
-        "name" : "Blue T-Shirt",
-        "image" : "blue-tshirt.webp" 
-    },
-    {
-        "id" : 2,
-        "name" : "Black Trousers",
-        "image" : "black-trouser.webp"
-    },
-    {
-        "id" : 3,
-        "name" : "Red Hoodie",
-        "image" : "red-hoodie.webp"
-    },
-    {
-        "id" : 4,
-        "name" : "Green Dress",
-        "image" : "green-dress.webp"
-        
-    },
-    {
-        "id" : 5,
-        "name" : "Yellow Summer Top",
-        "image" : "yellow-top.webp"
-        
-    },
-    {
-        "id" : 6,
-        "name" : "Running Shoes",
-        "image" : "black-shoes.webp"
-        
-    }
+    
+    
+    
+    
 ]

@@ -13,15 +13,19 @@
 */
 import Modal from "../UI/Modal";
 import "./AddProduct.css";
-import { useRef } from "react";
 import { useState } from "react";
-function AddProduct({ showProduct, closeProduct, addProducts }) {
+import { useContext } from "react";
+import AppContext from "../../store/app-context.js";
+
+function AddProduct() {
   // const nameRef = useRef();
+  const { showProduct, closeProduct, handleAddProduct } =
+    useContext(AppContext);
   const [productName, setProductName] = useState("");
   function handleSubmit(event) {
     event.preventDefault();
     // addProducts(nameRef.current.value);
-    addProducts(productName);
+    handleAddProduct(productName);
   }
   const handleProductNameChange = (event) => {
     const enteredName = event.target.value;
