@@ -15,22 +15,25 @@ function Product({ id, name, image, key, handleAddToCart }) {
   );
 }
 function Products() {
-  const { products, handleAddToCart } = useContext(AppContext);
-  console.log("this is products");
-  console.log(products);
+  const { products, handleAddToCart, loading } = useContext(AppContext);
+
   return (
     <div className="products-container">
-      {products.map((product) => (
-        // this key is mostly going to get used to add this ele
-        // to cart..
-        <Product
-          key={product.id}
-          id={product.id}
-          name={product.name}
-          image={product.image}
-          handleAddToCart={handleAddToCart}
-        />
-      ))}
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        products.map((product) => (
+          // this key is mostly going to get used to add this ele
+          // to cart..
+          <Product
+            key={product.id}
+            id={product.id}
+            name={product.name}
+            image={product.image}
+            handleAddToCart={handleAddToCart}
+          />
+        ))
+      )}
     </div>
   );
 }

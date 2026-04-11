@@ -10,16 +10,24 @@ const AppProvider = ({ children }) => {
   const openProduct = () => setShowProduct(true);
   const closeProduct = () => setShowProduct(false);
   const [cartItems, setCartItems] = useState([]);
+  const [loading, setIsLoading] = useState(false);
   const [products, setProducts] = useState(initialProducts);
+
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await fetch(
-        "https://react-store-c20d8-default-rtdb.firebaseio.com/products.json",
-      );
-      const data = await response.json();
-      console.log(data);
+      setIsLoading(true);
+      try {
+        const response = await fetch(
+          "https://react-store-c20d8-default-rtdb.firebaseio.com/products.json",
+        );
+        const data = await response.json();
+        setProducts(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false);
+      }
     };
-
     fetchProducts();
   }, []);
   function handleAddProduct(productName) {
@@ -58,15 +66,6 @@ const AppProvider = ({ children }) => {
     }
   };
   const handleAddToCart = (productId, productName, productImage) => {
-    // let updatedCartItems = cartItems;
-    // updatedCartItems = updatedCartItems.concat({
-    //   id: productId,
-    //   name: productName,
-    //   image: productImage,
-    //   quantity: 1,
-    // });
-    // instead of all this we can use spread operator to spread
-    // the array and just append at the end of the array..
     const productInCartIndex = cartItems.findIndex(
       (item) => item.id === productId,
     );
@@ -100,6 +99,7 @@ const AppProvider = ({ children }) => {
         handleAddProduct,
         handleAddToCart,
         openCart,
+        loading,
       }}
     >
       {children}
