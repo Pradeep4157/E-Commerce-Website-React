@@ -1,6 +1,7 @@
 import "../Products/Products.css";
 import AppContext from "../../store/app-context.js";
 import { useContext } from "react";
+import Loader from "../UI/Loader.js";
 function Product({ id, name, image, key, handleAddToCart }) {
   return (
     <div key={id} className="product">
@@ -16,20 +17,19 @@ function Product({ id, name, image, key, handleAddToCart }) {
 }
 function Products() {
   const { products, handleAddToCart, loading } = useContext(AppContext);
-
   return (
     <div className="products-container">
       {loading ? (
-        <h1>Loading...</h1>
+        <Loader />
       ) : (
-        products.map((product) => (
+        Object.keys(products).map((product) => (
           // this key is mostly going to get used to add this ele
           // to cart..
           <Product
-            key={product.id}
-            id={product.id}
-            name={product.name}
-            image={product.image}
+            key={product}
+            id={products[product].id}
+            name={products[product].name}
+            image={products[product].image}
             handleAddToCart={handleAddToCart}
           />
         ))

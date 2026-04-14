@@ -30,16 +30,34 @@ const AppProvider = ({ children }) => {
     };
     fetchProducts();
   }, []);
+  const sendProductData = async (product) => {
+    const response = await fetch(
+      "https://react-store-c20d8-default-rtdb.firebaseio.com/products.json",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      },
+    );
+    const data = await response.json();
+    console.log(data);
+  };
   function handleAddProduct(productName) {
     const product = {
       id: products.length + 1,
       name: productName,
       image: "random_image.webp",
     };
-    const updatedProducts = [...products, product];
-    setProducts(updatedProducts);
+
+    setProducts((products) => {
+      return { ...products, [Object.keys(products).length + 1]: product };
+    });
     setShowProduct(false);
+    sendProductData(product);
   }
+
   const handleIncreaseQuantity = (productId) => {
     const productInCartIndex = cartItems.findIndex(
       (item) => item.id === productId,
